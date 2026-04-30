@@ -2,12 +2,13 @@ package br.com.food.pagamentos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
-public class pagamentoApplication {
+@EnableDiscoveryClient
+public class PagamentoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(pagamentoApplication.class, args);
+		SpringApplication.run(PagamentoApplication.class, args);
 	}
-
 }
