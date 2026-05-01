@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="605aaaf9-dcd6-4d4a-a57f-6df498fcf34d" name="Changes" comment="" />
+    <list default="true" id="605aaaf9-dcd6-4d4a-a57f-6df498fcf34d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/gateway_/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/gateway_/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/gateway_/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/gateway_/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pagamentos/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/pagamentos/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pagamentos/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pagamentos/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pedidos/pedidos/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/pedidos/pedidos/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pedidos/pedidos/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pedidos/pedidos/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/server/server/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
