@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
@@ -20,6 +21,9 @@ public class PagamentoController {
 
     @Autowired
     private PagamentoService service;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @GetMapping
     public Page<PagamentoDto> listar(@PageableDefault(size = 10) Pageable paginacao) {
@@ -43,6 +47,8 @@ public class PagamentoController {
                 .path("/pagamentos/{id}")
                 .buildAndExpand(pagamento.getId())
                 .toUri();
+
+        rabbitTemplate.convertAndSend("pagamento.concluido", pagamento);
 
         return ResponseEntity.created(endereco).body(pagamento);
     }
