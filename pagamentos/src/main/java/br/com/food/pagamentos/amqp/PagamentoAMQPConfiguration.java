@@ -1,5 +1,6 @@
 package br.com.food.pagamentos.amqp;
 
+import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.QueueBuilder;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -14,8 +15,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PagamentoAMQPConfiguration {
     @Bean
-    public Queue criaFila(){
-        return QueueBuilder.nonDurable("pagamento.concluido").build();
+    public FanoutExchange fanoutExchange(){
+        return new FanoutExchange("pagamentos.ex");
     }
 
     @Bean

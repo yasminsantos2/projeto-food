@@ -1,4 +1,4 @@
-package br.com.food.pedidos.amqp;
+package br.com.food.avaliacao.amqp;
 
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -11,25 +11,32 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class PedidoAMQPConfiguration {
-
+public class AvaliacaoAMQPConfiguration {
     @Bean
-    public Jackson2JsonMessageConverter messageConverter() {
-        return new Jackson2JsonMessageConverter();
+    public Jackson2JsonMessageConverter messageConverter(){
+        return  new Jackson2JsonMessageConverter();
     }
 
     @Bean
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory,
-                                         Jackson2JsonMessageConverter messageConverter) {
+                                         Jackson2JsonMessageConverter messageConverter){
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(messageConverter);
-        return rabbitTemplate;
+        return  rabbitTemplate;
     }
 
     @Bean
-    public Queue filaDetalhesPedido() {
+    public Queue filaDetalhesAvaliacao() {
         return QueueBuilder
-                .nonDurable("pagamentos.detalhes-pedido")
+                .nonDurable("pagamentos.detalhes-avaliacao")
+                .deadLetterExchange("pagamentos.dlx")
+                .build();
+    }
+
+    @Bean
+    public Queue filaDlqDetalhesAvaliacao() {
+        return QueueBuilder
+                .nonDurable("pagamentos.detalhes-avaliacao-dlq")
                 .build();
     }
 
@@ -41,10 +48,24 @@ public class PedidoAMQPConfiguration {
     }
 
     @Bean
-    public Binding bindPagamentoPedido() {
+    public FanoutExchange deadLetterExchange() {
+        return ExchangeBuilder
+                .fanoutExchange("pagamentos.dlx")
+                .build();
+    }
+
+    @Bean
+    public Binding bindPagamentoAvaliacao() {
         return BindingBuilder
-                .bind(filaDetalhesPedido())
+                .bind(filaDetalhesAvaliacao())
                 .to(fanoutExchange());
+    }
+
+    @Bean
+    public Binding bindDlxPagamentoAvaliacao() {
+        return BindingBuilder
+                .bind(filaDlqDetalhesAvaliacao())
+                .to(deadLetterExchange());
     }
 
     @Bean
